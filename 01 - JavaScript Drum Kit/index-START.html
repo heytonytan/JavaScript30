@@ -58,7 +58,33 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  var matches = {
+    65: true,
+    83: true,
+    68: true,
+    70: true,
+    71: true,
+    72: true,
+    74: true,
+    75: true,
+    76: true
+  };
 
+  document.onkeydown = (event) => {
+    var key = event.keyCode;
+    if (!!matches[key]) {
+      document.querySelector(`div[data-key="${key}"]`).className = 'key playing';
+      document.querySelector(`audio[data-key="${key}"]`).play();
+    }
+  };
+
+  document.onkeyup = (event) => {
+    var key = event.keyCode;
+    if (!!matches[key]) {
+      document.querySelector(`div[data-key="${key}"]`).className = 'key';
+      document.querySelector(`audio[data-key="${key}"]`).load();
+    }
+  };
 </script>
 
 
