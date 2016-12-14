@@ -71,7 +71,7 @@
   };
 
   document.onkeydown = (event) => {
-    var key = event.keyCode;
+    const key = event.keyCode;
     if (!!matches[key]) {
       document.querySelector(`div[data-key="${key}"]`).className = 'key playing';
       document.querySelector(`audio[data-key="${key}"]`).play();
@@ -79,7 +79,7 @@
   };
 
   document.onkeyup = (event) => {
-    var key = event.keyCode;
+    const key = event.keyCode;
     if (!!matches[key]) {
       document.querySelector(`div[data-key="${key}"]`).className = 'key';
       document.querySelector(`audio[data-key="${key}"]`).load();
