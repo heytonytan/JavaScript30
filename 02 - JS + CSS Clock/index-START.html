@@ -63,6 +63,8 @@
       top:50%;
       transform-origin:100%;
       transform:rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.56,-0.51, 0.25, 2.63);
     }
 
   </style>
@@ -72,8 +74,7 @@
     var hours;
     var minutes; 
     var seconds;
-
-    setInterval(() => {
+    var update = () => {
       d = new Date();
       hours= d.getHours();
       minutes = d.getMinutes();
@@ -82,7 +83,10 @@
       document.querySelector('.hour-hand').style.transform = `rotate(${90 + (hours % 12) / 12 * 360}deg)`;
       document.querySelector('.min-hand').style.transform = `rotate(${90 + minutes / 60 * 360}deg)`;
       document.querySelector('.second-hand').style.transform = `rotate(${90 + seconds / 60 * 360}deg)`;
-    }, 1000);
+    };
+
+    update();
+    setInterval(update, 1000);
   </script>
 </body>
 </html>
