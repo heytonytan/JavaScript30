@@ -16,7 +16,31 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const cities = [];
+fetch(endpoint)
+  .then(response => response.json())
+  .then(data => {
+    cities.push(...data);
+  })
+  .catch(err => console.error(err));
 
+function searchTerm() {
+  const regex = new RegExp(this.value, 'gi');
+  const filtered = cities.filter(location => 
+    location.city.match(regex, 'gi') || location.state.match(regex, 'gi')
+  );
+  const searchResults = filtered.map(location => {
+    const searchResult = `${location.city}, ${location.state}`.replace(regex, `<span class="hl">${this.value}</span>`); 
+    return `<li>
+              <span class="name">${searchResult}</span>
+              <span class="population">${location.population}</span>
+            </li>`;
+  }).join('');
+  document.querySelector('.suggestions').innerHTML = searchResults;
+}
+
+const search = document.querySelector('.search');
+search.addEventListener('keyup', searchTerm);
 </script>
   </body>
 </html>
