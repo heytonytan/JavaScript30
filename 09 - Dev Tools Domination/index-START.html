@@ -18,28 +18,71 @@
     }
 
     // Regular
+    console.log('Hello!');
 
     // Interpolated
+    console.log('Hohoho heyhey %s kokoko', 'hallelu');
 
     // Styled
+    console.log('%c herherherh', 'font-size:20px; background:red');
 
     // warning!
+    console.warn('OHNOOOO');
 
     // Error :|
+    console.error('dang');
 
     // Info
+    console.info('JavaScript has interesting properties');
 
     // Testing
-
+    console.assert(1 === 1, 'that is wrong!!'); // will not show anything
+    console.assert(1 === 2, 'that is wrong!!');
+    
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'that is the wrong element');
+    
     // clearing
+    console.clear();  
 
     // Viewing DOM Elements
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach((dog) => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('Tony');
+    console.count('Perk');
+    console.count('Tony');
+    console.count('Perk');
+    console.count('Tony');
+    console.count('Perk');
+    console.count('Tony');
+    console.count('Perk');
+    console.count('Tony');
+    console.count('Tony');
+    console.count('Tony');
+    console.count('Tony');
+    console.count('Tony');
 
     // timing
+    console.time('fetching data:');
+    fetch('https://api.github.com/users/tankwan')
+      .then(data => data.json())
+      .then(data => {
+          console.timeEnd('fetching data:');
+          console.log(data);
+          return data;
+      })
+      .catch(err => console.error(err));
+
+    console.table(dogs);
 
   </script>
 </body>
